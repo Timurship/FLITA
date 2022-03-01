@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+int a[10];
+int b[10];
+int i,t,r,h;
+
+printf("First \n");
+
+for (i=0; i<3; i++)
+{
+scanf("%d", &a[i]);
+}
+
+printf("Second \n");
+for (t=0; t<3; t++)
+{
+scanf("%d", &b[t]);
+}
+
+printf("Number for delete \n");
+scanf("%d", &r);
+a[r]=" ";
+
+printf("Addition \n");
+scanf("%d", &h);
+a[r]=h;
+
+printf("First \n");
+for (i=0; i<3; i++)
+{
+printf("%d\n", a[i]);
+}
+
+printf("Second \n");
+for (t=0; t<3; t++)
+{
+printf("%d\n", b[t]);
+}
+}
