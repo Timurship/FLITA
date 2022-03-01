@@ -1,40 +1,68 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
+
 int main()
 {
-int a[101];
-int b[101];
-int i,t,r,h;
+ int *a;
+ int *b;
+ int i, n, s, v, p;
+ printf("Enter size of array1: ");
+ scanf("%d", &n);
+ a = (int*)malloc(n * sizeof(int));
+ for (i = 0; i < n; i++)
+ {
+ printf("a[%d] = ", i);
+ scanf("%d", &a[i]);
+ }
+ for (i = 0; i < n; i++) 
+ {
+ printf("%d ", a[i]);
+ }
+ printf("\n");
 
-printf("First \n");
+ printf("Enter size of array2: ");
+ scanf("%d", &p);
+ b = (int*)malloc(n * sizeof(int));
+ for (v = 0; v < p; v++)
+ {
+ printf("b[%d] = ", v);
+ scanf("%d", &b[v]);
+ }
+ for (v = 0; v < n; v++) 
+ {
+ printf("%d ", b[v]);
+ }
+ printf("\n");
+ 
+ printf("Enter pozition: ");
+ scanf("%d", &s);
+ for (int i = s; i < n; i++) 
+ {
+ a[i] = a[i + 1];
+ }
+ —n;
+ for (i = 0; i < n; i++)
+ {
+ printf("%d ", a[i]);
+ }
+ printf("\n");
+ ++n;
+ int k;
+ printf("Enter new number: ");
+ scanf("%d ", &k);
+ for (i = 0; i < n; i++)
+ {
+ if (i == n - 1)
+ {
+ a[i] = k;
+ }
+ }
+ for (i = 0; i < n; i++)
+ {
+ printf("%d ", a[i]);
+ }
+ return 0;
 
-for (i=0; i<5; i++)
-{
-scanf("%d", &a[i]);
-}
-
-printf("Second \n");
-for (t=0; t<5; t++)
-{
-scanf("%d", &b[t]);
-}
-
-printf("Number for delete \n");
-scanf("%d", &r);
-a[r]=" ";
-
-printf("Addition \n");
-scanf("%d", &h);
-a[r]=h;
-
-printf("First \n");
-for (i=0; i<5; i++)
-{
-printf("%d\n", a[i]);
-}
-
-printf("Second \n");
-for (t=0; t<5; t++)
-{
-printf("%d\n", b[t]);
-}
 }
