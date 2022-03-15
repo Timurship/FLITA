@@ -5,64 +5,102 @@
 
 int main()
 {
- int *a;
- int *b;
- int i, n, s, v, p;
- printf("Enter size of array1: ");
- scanf("%d", &n);
- a = (int*)malloc(n * sizeof(int));
- for (i = 0; i < n; i++)
- {
- printf("a[%d] = ", i);
- scanf("%d", &a[i]);
- }
- for (i = 0; i < n; i++) 
- {
- printf("%d ", a[i]);
- }
- printf("\n");
+    int* m;
+    int* a;
+    int* b;
+    int i, n, s, j, k, h;
+    int v = 0;
+    printf("Enter size of array1: ");
+    scanf("%d", &h);
+    m = (int*)malloc(h * sizeof(int));
+    for (i = 0; i < h; i++)
+    {
+        printf("m[%d] = ", i);
+        scanf("%d", &m[i]);
+    }
+    for (i = 0; i < h; i++)
+    {
+        printf("%d ", m[i]);
+    }
+    printf("\n");
 
- printf("Enter size of array2: ");
- scanf("%d", &p);
- b = (int*)malloc(n * sizeof(int));
- for (v = 0; v < p; v++)
- {
- printf("b[%d] = ", v);
- scanf("%d", &b[v]);
- }
- for (v = 0; v < n; v++) 
- {
- printf("%d ", b[v]);
- }
- printf("\n");
- 
- printf("Enter pozition: ");
- scanf("%d", &s);
- for (int i = s; i < n; i++) 
- {
- a[i] = a[i + 1];
- }
- —n;
- for (i = 0; i < n; i++)
- {
- printf("%d ", a[i]);
- }
- printf("\n");
- ++n;
- int k;
- printf("Enter new number: ");
- scanf("%d ", &k);
- for (i = 0; i < n; i++)
- {
- if (i == n - 1)
- {
- a[i] = k;
- }
- }
- for (i = 0; i < n; i++)
- {
- printf("%d ", a[i]);
- }
- return 0;
+    printf("Enter size of array2: ");
+    scanf("%d", &n);
+    a = (int*)malloc(n * sizeof(int));
+    for (i = 0; i < n; i++)
+    {
+        printf("a[%d] = ", i);
+        scanf("%d", &a[i]);
+    }
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
 
+    printf("Enter count pozition for delete: ");
+    scanf("%d", &s);
+    printf("Enter pozitions: ");
+    b = (int*)malloc(s * sizeof(int));
+    for (i = 0; i < s; i++)
+    {
+        scanf("%d", &b[i]);
+    }
+    int* c;
+    c = (int*)malloc((n - s) * sizeof(int));
+    for (i = 0; i < n; i++)
+    {
+        int abc = 0;
+        for (j = 0; j < s; j++)
+        {
+            if (i == b[j])
+            {
+                abc = 1;
+                break;
+            }
+
+        }
+        if (abc == 0)
+        {
+            c[v] = a[i];
+            v++;
+        }
+
+    }
+    for (i = 0; i < v; i++)
+    {
+        printf("%d ", c[i]);
+    }
+    printf("\n");
+    free(a);
+    free(b);
+
+    int f = 0;
+    printf("Enter count of new numbers: ");
+    scanf("%d ", &k);
+    int* g;
+    g = (int*)malloc(k * sizeof(int));
+    for (i = 0; i < k; i++)
+    {
+        scanf("%d", &g[i]);
+    }
+    int* r;
+    r = (int*)malloc((k + v) * sizeof(int));
+    for (i = 0; i < v; i++)
+    {
+        r[f] = c[i];
+        f++;
+    }
+    for (i = 0; i < k; i++)
+    {
+        r[f] = g[i];
+        f++;
+    }
+    for (i = 0; i < f; i++)
+    {
+        printf("%d ", r[i]);
+    }
+
+    printf("\n");
+    return EXIT_SUCCESS;
 }
