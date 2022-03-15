@@ -1,0 +1,45 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+int main(){
+  int n;
+  int A[101][101];
+  FILE* flita, *flita1;
+  flita = fopen("flita.txt", "r");
+  scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            fscanf(flita, "%d", &A[i][j]);
+        }
+    }
+fclose(flita);
+
+  flita1 = fopen("flita1.txt", "w");
+fprintf(flita1, "graph {");
+  for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (A[i][j] != 0)
+                {
+                 
+                    fprintf(flita1, "%d", i + 1);
+                    fprintf(flita1, " -- ");
+                    fprintf(flita1, "%d\n", j + 1);
+                    if (A[i][j] > 1)
+                    {
+                      fprintf(flita1, " [label = %d", A[i][j]);
+                      
+                      fprintf(flita1, " ]\n ");
+                    }
+                }
+            }
+        }
+  fprintf(flita1, " } ");
+}
+
+
