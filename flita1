@@ -2,58 +2,24 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
-
-int main()
-{
-    int* m;
-    int* a;
-    int* b;
-    int i, n, s, j, k, h;
-    int v = 0;
-    printf("Enter size of array1: ");
-    scanf("%d", &h);
-    m = (int*)malloc(h * sizeof(int));
-    for (i = 0; i < h; i++)
-    {
-        printf("m[%d] = ", i);
-        scanf("%d", &m[i]);
-    }
-    for (i = 0; i < h; i++)
-    {
-        printf("%d ", m[i]);
-    }
-    printf("\n");
-
-    printf("Enter size of array2: ");
-    scanf("%d", &n);
-    a = (int*)malloc(n * sizeof(int));
-    for (i = 0; i < n; i++)
-    {
-        printf("a[%d] = ", i);
-        scanf("%d", &a[i]);
-    }
-    for (i = 0; i < n; i++)
-    {
-        printf("%d ", a[i]);
-    }
-    printf("\n");
-
-    printf("Enter count pozition for delete: ");
-    scanf("%d", &s);
+int* delete(int* ar2, int n1, int s1){
+  int v1 = 0;
+  int i1,j1;
+  int* ar3;
+  int* ar4;
     printf("Enter pozitions: ");
-    b = (int*)malloc(s * sizeof(int));
-    for (i = 0; i < s; i++)
+    ar3 = (int*)malloc(s1 * sizeof(int));
+    for (i1 = 0; i1 < s1; i1++)
     {
-        scanf("%d", &b[i]);
+        scanf("%d", &ar3[i1]);
     }
-    int* c;
-    c = (int*)malloc((n - s) * sizeof(int));
-    for (i = 0; i < n; i++)
+    ar4 = (int*)malloc((n1 - s1) * sizeof(int));
+    for (i1 = 0; i1 < n1; i1++)
     {
         int abc = 0;
-        for (j = 0; j < s; j++)
+        for (j1 = 0; j1 < s1; j1++)
         {
-            if (i == b[j])
+            if (i1 == ar3[j1])
             {
                 abc = 1;
                 break;
@@ -62,45 +28,141 @@ int main()
         }
         if (abc == 0)
         {
-            c[v] = a[i];
-            v++;
+            ar4[v1] = ar2[i1];
+            v1++;
         }
 
     }
-    for (i = 0; i < v; i++)
+    for (i1 = 0; i1 < v1; i1++)
     {
-        printf("%d ", c[i]);
+      if(ar4[i1] != 0){
+        printf("%d ", ar4[i1]);
+     }
+        
     }
     printf("\n");
-    free(a);
-    free(b);
+    free(ar3);
+    return ar4;
+}
 
-    int f = 0;
+int add(int* ar4, int v2){
+    int k2, i2, f2;
+    int* ar5;
+    int* ar6;
     printf("Enter count of new numbers: ");
-    scanf("%d ", &k);
-    int* g;
-    g = (int*)malloc(k * sizeof(int));
-    for (i = 0; i < k; i++)
+    scanf("%d ", &k2);
+    ar5 = (int*)malloc(k2 * sizeof(int));
+    for (i2 = 0; i2 < k2; i2++)
     {
-        scanf("%d", &g[i]);
+        scanf("%d", &ar5[i2]);
     }
-    int* r;
-    r = (int*)malloc((k + v) * sizeof(int));
-    for (i = 0; i < v; i++)
+    ar6 = (int*)malloc((k2 + v2) * sizeof(int));
+    for (i2 = 0; i2 < v2; i2++)
     {
-        r[f] = c[i];
-        f++;
+        ar6[f2] = ar4[i2];
+        f2++;
     }
-    for (i = 0; i < k; i++)
+    for (i2 = 0; i2 < k2; i2++)
     {
-        r[f] = g[i];
-        f++;
+        ar6[f2] = ar5[i2];
+        f2++;
     }
-    for (i = 0; i < f; i++)
+    for (i2 = 0; i2 < f2; i2++)
     {
-        printf("%d ", r[i]);
+        printf("%d ", ar6[i2]);
     }
 
     printf("\n");
+    }
+
+int main()
+{
+    int* arr1;
+    int* arr2;
+    int i, n, h, y, u, p, l, s, t;
+    int f = 0;
+    int v = 0;
+    printf("Enter size of array1: ");
+    scanf("%d", &h);
+    arr1 = (int*)malloc(h * sizeof(int));
+    for (i = 0; i < h; i++)
+    {
+        printf("arr1[%d] = ", i);
+        scanf("%d", &arr1[i]);
+    }
+    for (i = 0; i < h; i++)
+    {
+        printf("%d ", arr1[i]);
+    }
+    printf("\n");
+  
+    printf("Enter size of array2: ");
+    scanf("%d", &n);
+    arr2 = (int*)malloc(n * sizeof(int));
+    for (i = 0; i < n; i++)
+    {
+        printf("arr2[%d] = ", i);
+        scanf("%d", &arr2[i]);
+    }
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", arr2[i]);
+    }
+    printf("\n");
+
+    
+  for(y = 0; y < 2; y++){
+    printf("Choose array:");
+    scanf("%d", &l);
+    printf("Do you want to remove the values?(1 = yes, 0 = no)");
+    scanf("%d", &p);
+
+    switch(p){
+    case 1: switch(l){
+      case 1:  printf("Enter count pozition: ");
+              scanf("%d", &s);
+              arr1 = delete(arr1, h, s);
+              
+              break;
+      case 2: printf("Enter count pozition: ");
+              scanf("%d", &s);
+              arr2 = delete(arr2, n, s);
+              break;
+    } 
+            printf("Do you want to add values?(1 = yes, 0 = no)\n");
+            scanf("\n%d", &u);
+      switch(u){
+        case 1: switch(l){
+          case 1: t = h - s;
+                  add(arr1, t);
+                  break;
+          case 2: t = n - s;
+                  add(arr2, t);
+                  break;
+        }
+      }
+      if(y > 0){
+           printf("Bye");
+         }
+      break;
+    case 0: printf("Do you want to add values?(1 = yes, 0 = no)");
+            scanf("\n%d", &u);
+      switch(u){
+        case 1: switch(l){
+          case 1: 
+                  add(arr1, h);
+                  break;
+          case 2: 
+                  add(arr2, n);
+                  break;
+        }
+        case 0: if(y > 0){
+           printf("Bye");
+         }
+                break;
+      }
+      break;
+  }
+}
     return EXIT_SUCCESS;
 }
