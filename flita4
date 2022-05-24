@@ -1,0 +1,109 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
+#define MAX 1000
+#define STEP 50
+void BS(int size, int* arr)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size - i; j++)
+        {
+            if (arr[j] < arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+int main()
+{
+    long t;
+    int y = 0;
+    int z = 0;
+    clock_t start, stop;
+    /*  FILE* file;
+      file = fopen("file.txt", "r");
+      scanf("%d", &n);
+      int* B=(int*)malloc((n * n) * sizeof(int));
+      int* C=(int*)malloc((n * n) * sizeof(int));
+      for (int i = 0; i < n; i++)
+      {
+        for (int j = 0; j < n; j++)
+        {
+          fscanf(file, "%d", &A[i][j]);
+        }
+      }
+      fclose(file);*/
+    //scanf("%d", &n);
+    for (int n = 1000; n <= 100000; n += 1000)
+    {
+        for (int b = 0; b < 1; b++)
+        {
+            start = clock();
+            int** A = (int**)malloc(n * sizeof(int*));
+            for (int i = 0; i < n; i++) 
+            {
+                A[i] = (int*)malloc(n * sizeof(int));
+            }
+            int* B = (int*)malloc((n * n) * sizeof(int));
+            int* C = (int*)malloc((n * n) * sizeof(int));
+            srand(time(NULL));
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    A[i][j] = rand() % 2;
+                }
+            }
+            /*for (int i = 0; i < n; i++)
+            {
+              for (int j = 0; j < n; j++)
+              {
+                printf("%d ", A[i][j]);
+              }
+              printf("\n");
+            }*/
+            int q = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (A[i][j] != 0 && i < j) // < симметричная != не симметричная
+                    {
+                        B[i]++;
+                        B[j]++;
+                    }
+                }
+            }
+            for (int i = 0; i < n; i++) 
+            {
+                free(A[i]);
+            }
+            free(A);
+            for (int i = 0; i < n; i++)
+            {
+                if (B[i] % 2 == 0 && B[i] != 0)
+                {
+                    C[q] = i + 1;
+                    q++;
+                }
+            }
+            BS(q, C);
+            /*for(int i = 0; i < q; i++)
+            {
+              printf("%d", C[i]);
+            }*/
+            printf("\n");
+            stop = clock();
+            t = stop - start;
+            printf("Time %d: %.3f\n", n, ((double)t)/CLOCKS_PER_SEC); 
+            free(C);
+            free(B);
+        }
+    }
+}
